@@ -4,6 +4,7 @@ The requirements document can be found as `Pathfind Assignment.pdf`
 
 ### Notes
 * For caching redis is used
+* Add your amadeus api key and secret in .env
 
 
 *The recommended installation is via docker compose.*
