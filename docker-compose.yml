@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  django:
+    build:
+      context: .
+    container_name: pathfindr-assignment
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 1
+    networks:
+      - django-redis-network
+
+  redis:
+    image: redis:alpine
+    container_name: redis_cache
+    networks:
+      - django-redis-network
+
+networks:
+  django-redis-network:
+    driver: bridge
